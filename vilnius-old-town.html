@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vilnius Old Town — where to eat + what is worth seeing</title>
+  <style>
+    :root{
+      --bg:#0a0e14;
+      --bg2:#111827;
+      --card:#121a24cc;
+      --line:#263244;
+      --text:#f5f7fb;
+      --muted:#9fb0c7;
+      --accent:#78c6ff;
+      --accent2:#f6c56f;
+      --green:#8ad1b2;
+      --pink:#ff8fb1;
+      --shadow:0 18px 60px rgba(0,0,0,.28);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,Arial,Helvetica,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(120,198,255,.16), transparent 26%),
+        radial-gradient(circle at top right, rgba(246,197,111,.14), transparent 22%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1180px;margin:0 auto;padding:28px 18px 72px}
+    .hero{
+      padding:28px;
+      border:1px solid var(--line);
+      border-radius:28px;
+      background:linear-gradient(180deg, rgba(18,26,36,.94), rgba(14,20,29,.92));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero:before,.hero:after{
+      content:"";position:absolute;border-radius:999px;filter:blur(2px)
+    }
+    .hero:before{width:240px;height:240px;right:-40px;top:-40px;background:rgba(120,198,255,.12)}
+    .hero:after{width:180px;height:180px;left:-30px;bottom:-40px;background:rgba(246,197,111,.12)}
+    .kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:800}
+    h1{font-size:48px;line-height:1.02;margin:12px 0 14px;max-width:880px;position:relative}
+    .lead{font-size:18px;line-height:1.65;color:#dde6f5;max-width:860px;position:relative;margin:0}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px;position:relative}
+    .stat,.panel,.card,.timeline-stop,.mini-card{border:1px solid var(--line);background:var(--card);border-radius:22px;box-shadow:var(--shadow)}
+    .stat{padding:16px}
+    .stat .label{display:block;color:var(--muted);font-size:13px;margin-bottom:8px}
+    .stat b{font-size:24px}
+    .section{margin-top:28px}
+    .section h2{font-size:31px;margin:0 0 14px}
+    .section-intro{margin:0 0 18px;color:#cdd7e7;max-width:860px;line-height:1.6}
+    .grid{display:grid;grid-template-columns:1.08fr .92fr;gap:18px}
+    .panel{padding:22px}
+    .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    .pill{padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:#0f1620;color:#ecf2fb;font-size:13px}
+    .route-list{display:grid;gap:10px;margin-top:14px}
+    .route-step{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:16px;background:#0e151f}
+    .dot{width:12px;height:12px;border-radius:999px;flex:0 0 auto;margin-top:6px}
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .card{overflow:hidden}
+    .card .inner{padding:18px}
+    .eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:800}
+    .card h3{font-size:28px;margin:8px 0 8px}
+    .card p{margin:0;color:#dbe5f2;line-height:1.58}
+    .meta{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+    .meta div{padding:12px;border:1px solid var(--line);border-radius:16px;background:#0f1620}
+    .meta span{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 14px;border-radius:14px;font-weight:700;border:1px solid var(--line);background:#0f1620}
+    .btn.primary{background:linear-gradient(180deg, #87d3ff, #63bdf8);color:#08111c;border:none}
+    .btn.soft{background:rgba(246,197,111,.10);color:#ffe3ad;border-color:rgba(246,197,111,.25)}
+    .timeline{display:grid;gap:14px}
+    .timeline-stop{padding:16px 18px}
+    .time{font-size:26px;font-weight:800;margin-bottom:8px}
+    .timeline-stop p{margin:6px 0 0;color:#d8e2ef;line-height:1.58}
+    .note{margin-top:14px;padding:16px 18px;border-radius:18px;background:rgba(255,143,177,.10);border:1px solid rgba(255,143,177,.22);color:#ffd5e2;line-height:1.6}
+    .mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .mini-card{padding:18px}
+    .mini-card h3{margin:0 0 10px;font-size:20px}
+    .mini-card p{margin:0;color:#d7e2f1;line-height:1.56}
+    .footer{margin-top:28px;padding:20px 22px;border:1px solid var(--line);border-radius:22px;background:#0e151f;color:var(--muted);line-height:1.65}
+    @media (max-width:980px){
+      h1{font-size:38px}
+      .stats,.cards,.mini-grid,.grid,.meta{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:760px){
+      .stats,.cards,.mini-grid,.grid,.meta{grid-template-columns:1fr}
+      .wrap{padding:18px 14px 56px}
+      .hero,.panel,.timeline-stop,.mini-card,.card .inner{padding-left:16px;padding-right:16px}
+      h1{font-size:34px}
+      .lead{font-size:16px}
+      .section h2{font-size:28px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="kicker">vilnius · old town plan</div>
+      <h1>Вы здесь: Hotel Vilnia. Вот красивый план — где быстро перекусить и что правда стоит увидеть пешком.</h1>
+      <p class="lead">Я собрал маршрут прямо от вашей текущей точки у <b>Hotel Vilnia</b> в Старом городе. Логика простая: сначала <b>быстрый и близкий перекус</b>, потом <b>короткая красивая прогулка</b> по тем местам, которые реально стоят внимания, без туристического мусора и без лишних крюков.</p>
+      <div class="stats">
+        <div class="stat"><span class="label">Старт</span><b>Hotel Vilnia</b></div>
+        <div class="stat"><span class="label">Район</span><b>Старый город / Užupis</b></div>
+        <div class="stat"><span class="label">Лучший быстрый обед</span><b>Saint Germain</b></div>
+        <div class="stat"><span class="label">Формат</span><b>пешком</b></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid">
+        <div class="panel">
+          <div class="kicker">что важно сейчас</div>
+          <h2 style="margin:10px 0 8px">Самый удобный сценарий: поесть рядом, потом сделать красивый петлевой маршрут</h2>
+          <p class="section-intro">Вы уже в очень сильной точке: отсюда почти всё интересное в пределах короткой прогулки. Я бы не распылялся. Сначала что-то человеческое поесть, потом пройти через самые красивые места старого Вильнюса.</p>
+          <div class="route-list">
+            <div class="route-step"><span class="dot" style="background:var(--accent2)"></span><div><b>Сначала перекусить рядом</b><br><span style="color:var(--muted)">Лучший близкий вариант — <b>Vyninė Saint Germain</b>. Если хочется более расслабленно у воды — <b>Užupio kavinė</b>.</span></div></div>
+            <div class="route-step"><span class="dot" style="background:var(--accent)"></span><div><b>Потом пройти must-see кусок</b><br><span style="color:var(--muted)">Бернардинский ансамбль → дворики/улочки старого города → кафедральная зона.</span></div></div>
+            <div class="route-step"><span class="dot" style="background:var(--green)"></span><div><b>Если нужен короткий формат</b><br><span style="color:var(--muted)">Делайте 60–90 минут: еда + Bernardinai / St. Anne + чуть Užupis.</span></div></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="kicker">ваша точка</div>
+          <h2 style="margin:10px 0 8px">Где вы стоите</h2>
+          <p class="section-intro">По скрину и геопоиску это точка у <b>Hotel Vilnia</b>, Maironio g. 1 — очень удачное место на краю старого города, рядом с рекой и в нескольких минутах от самых приятных пешеходных участков.</p>
+          <div class="pill-row">
+            <span class="pill">Hotel Vilnia</span>
+            <span class="pill">Maironio g. 1</span>
+            <span class="pill">координаты 54.6849, 25.2929</span>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="https://www.google.com/maps/search/?api=1&query=54.6849108,25.2928802" target="_blank" rel="noopener noreferrer">Открыть вашу точку в Google Maps</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Где лучше перекусить</h2>
+      <p class="section-intro">Я отобрал не всё подряд, а то, что логично именно из вашей точки: близко, удобно и без кривого маршрута.</p>
+      <div class="cards">
+        <article class="card">
+          <div class="inner">
+            <div class="eyebrow">Лучший близкий вариант</div>
+            <h3>Vyninė Saint Germain</h3>
+            <p>Самый аккуратный и взрослый вариант рядом с вами. Идти недалеко, место подходит, если хочется <b>сесть нормально</b>, а не просто схватить кофе. По данным карты — французская кухня.</p>
+            <div class="meta">
+              <div><span>Пешком от вас</span><b>~380 м · около 5 мин</b></div>
+              <div><span>Адрес</span><b>Literatų g. 9</b></div>
+              <div><span>Формат</span><b>обед / бокал / спокойно посидеть</b></div>
+              <div><span>Контакт</span><b>+370 5 262 1210</b></div>
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="https://www.google.com/maps/dir/?api=1&origin=54.6849108,25.2928802&destination=54.682186,25.2913077" target="_blank" rel="noopener noreferrer">Маршрут пешком</a>
+              <a class="btn" href="https://saintgermain.lt/" target="_blank" rel="noopener noreferrer">Сайт</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="inner">
+            <div class="eyebrow">Самый приятный relaxed-вариант</div>
+            <h3>Užupio kavinė</h3>
+            <p>Если хочется не формального обеда, а более приятной атмосферной паузы, это очень логичный выбор. Хорошо ложится в прогулку по Užupis и не требует специально куда-то пилить.</p>
+            <div class="meta">
+              <div><span>Пешком от вас</span><b>~570 м · около 7 мин</b></div>
+              <div><span>Адрес</span><b>Užupio g. 2</b></div>
+              <div><span>Часы</span><b>ежедневно 10:00–23:00</b></div>
+              <div><span>Формат</span><b>длинный кофе / поздний ланч / красивый стоп</b></div>
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="https://www.google.com/maps/dir/?api=1&origin=54.6849108,25.2928802&destination=54.6805282,25.2929064" target="_blank" rel="noopener noreferrer">Маршрут пешком</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="inner">
+            <div class="eyebrow">Если нужен быстрый кофе + выпечка</div>
+            <h3>Crustum</h3>
+            <p>Самый понятный вариант, если хочется <b>быстро перехватить</b> кофе и выпечку, а не садиться на полный обед. Хорошо работает как короткий старт перед прогулкой.</p>
+            <div class="meta">
+              <div><span>Пешком от вас</span><b>~200 м по прямой</b></div>
+              <div><span>Адрес</span><b>Pilies g. 4</b></div>
+              <div><span>Часы</span><b>07:30–21:00</b></div>
+              <div><span>Формат</span><b>кофе / булка / быстро</b></div>
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="https://www.google.com/maps/dir/?api=1&origin=54.6849108,25.2928802&destination=54.6844256,25.2897763" target="_blank" rel="noopener noreferrer">Маршрут пешком</a>
+              <a class="btn" href="https://www.crustum.lt" target="_blank" rel="noopener noreferrer">Сайт</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="inner">
+            <div class="eyebrow">Если хочется ещё один запасной сладкий вариант</div>
+            <h3>Kmyninė</h3>
+            <p>Хороший план B, если захотите уйти чуть глубже в Užupis и взять что-то проще: кофе, мороженое, выпечку, небольшой десертный стоп.</p>
+            <div class="meta">
+              <div><span>Пешком от вас</span><b>~550 м</b></div>
+              <div><span>Адрес</span><b>Užupio g. 38</b></div>
+              <div><span>Часы</span><b>07:30–21:00</b></div>
+              <div><span>Формат</span><b>десерт / кофе / спокойный перекус</b></div>
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="https://www.google.com/maps/dir/?api=1&origin=54.6849108,25.2928802&destination=54.6814428,25.2989347" target="_blank" rel="noopener noreferrer">Маршрут пешком</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Что точно стоит внимания</h2>
+      <p class="section-intro">Не «всё подряд», а именно те точки, которые логично собрать в красивую пешую прогулку от вашей локации.</p>
+      <div class="mini-grid">
+        <div class="mini-card">
+          <h3>Bernardinai / St. Anne area</h3>
+          <p><b>Вот это must-see почти сразу.</b> Это как раз тот кусок Вильнюса, где ощущается старый город без необходимости далеко идти. Очень близко к вам и визуально один из самых сильных отрезков.</p>
+          <div class="actions"><a class="btn primary" href="https://www.google.com/maps/dir/?api=1&origin=54.6849108,25.2928802&destination=54.6830434,25.2940277" target="_blank" rel="noopener noreferrer">Идти ~430 м</a></div>
+        </div>
+        <div class="mini-card">
+          <h3>Adomo Mickevičiaus muziejus</h3>
+          <p>Маленькая, но очень уместная культурная точка буквально рядом. Хорошо добавляет содержательности прогулке, если хотите не только «походить и поесть».</p>
+          <div class="actions"><a class="btn primary" href="https://www.google.com/maps/dir/?api=1&origin=54.6849108,25.2928802&destination=54.6833738,25.2916966" target="_blank" rel="noopener noreferrer">Идти ~290 м</a></div>
+        </div>
+        <div class="mini-card">
+          <h3>Vilniaus katedra</h3>
+          <p>Более открытая, парадная часть прогулки. Сюда стоит идти после камерных улиц — как финальный красивый выход в большой городской кадр.</p>
+          <div class="actions"><a class="btn primary" href="https://www.google.com/maps/dir/?api=1&origin=54.6849108,25.2928802&destination=54.6858898,25.2877952" target="_blank" rel="noopener noreferrer">Идти ~1.5 км</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Готовый маршрут на 2–3 часа</h2>
+      <div class="timeline">
+        <div class="timeline-stop">
+          <div class="time">1. Старт — Hotel Vilnia</div>
+          <p>Выходите без спешки и сразу решаете, какой формат вам нужен: <b>быстрое кофе + выпечка</b> или <b>нормально сесть поесть</b>.</p>
+        </div>
+        <div class="timeline-stop">
+          <div class="time">2. Перекус</div>
+          <p><b>Если хотите лучший общий вариант:</b> идите в <b>Vyninė Saint Germain</b>.<br>
+          <b>Если хочется расслабленнее и атмосфернее:</b> берите <b>Užupio kavinė</b>.<br>
+          <b>Если надо быстро:</b> <b>Crustum</b>.</p>
+        </div>
+        <div class="timeline-stop">
+          <div class="time">3. Красивый короткий must-see кусок</div>
+          <p>После еды проходите через <b>Bernardinų / St. Anne</b> зону. Это самый лёгкий способ быстро почувствовать, что вы правда в красивом Вильнюсе, а не просто ходите между адресами.</p>
+        </div>
+        <div class="timeline-stop">
+          <div class="time">4. Дальше по настроению</div>
+          <p><b>Культурный вариант:</b> Adomo Mickevičiaus muziejus → Signatarų namai.<br>
+          <b>Открыточный вариант:</b> идти дальше к <b>кафедральной площади</b>.<br>
+          <b>Лёгкий и расслабленный вариант:</b> остаться в Užupis и просто догулять его в своём темпе.</p>
+        </div>
+      </div>
+      <div class="note"><b>Мой короткий совет:</b> если у вас только один хороший слот, делайте так: <b>Saint Germain → Bernardinai / St. Anne → чуть пройти старый город → кафедральная зона</b>. Это самый собранный и красивый сценарий без ощущения, что вы бегаете галопом.</div>
+    </section>
+
+    <section class="section">
+      <h2>Три готовых режима</h2>
+      <div class="cards">
+        <article class="card"><div class="inner"><div class="eyebrow">коротко и вкусно</div><h3>60–90 минут</h3><p><b>Crustum</b> или <b>Saint Germain</b>, потом Bernardinai / St. Anne и обратно. Если сил мало — этого уже достаточно, чтобы не почувствовать день пустым.</p></div></article>
+        <article class="card"><div class="inner"><div class="eyebrow">лучший общий сценарий</div><h3>2–3 часа</h3><p><b>Saint Germain</b> → must-see улицы и церкви → <b>Vilniaus katedra</b>. Самый сбалансированный вариант по еде, прогулке и визуальному кайфу.</p></div></article>
+        <article class="card"><div class="inner"><div class="eyebrow">расслабленно и атмосферно</div><h3>Užupis mood</h3><p><b>Užupio kavinė</b> или <b>Kmyninė</b>, потом неспешная прогулка по Užupis и возвращение через старый город. Меньше галочек, больше ощущения места.</p></div></article>
+        <article class="card"><div class="inner"><div class="eyebrow">если хочется «поумнее»</div><h3>Культура + еда</h3><p>Перекус → <b>Adomo Mickevičiaus muziejus</b> → <b>Signatarų namai</b> → дальше уже по силам к кафедре. Хорошо, если хочется не только фоток, но и содержания.</p></div></article>
+      </div>
+    </section>
+
+    <div class="footer">
+      Сделано по вашей текущей точке на карте у <b>Hotel Vilnia</b> и данным nearby/route-поиска. Время, открытие и детали заведений в OpenStreetMap бывают неидеальны, поэтому перед финальным походом лучше ещё открыть нужную точку в Google Maps и быстро проверить, что она сейчас действительно работает.
+    </div>
+  </div>
+</body>
+</html>
