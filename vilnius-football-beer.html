@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vilnius tonight — football + beer near Hotel Vilnia</title>
+  <style>
+    :root{
+      --bg:#0a0d12;
+      --bg2:#111722;
+      --card:#121a24ee;
+      --line:#273244;
+      --text:#f5f7fb;
+      --muted:#a5b3c8;
+      --blue:#7dcfff;
+      --gold:#f2c46d;
+      --green:#8fd2aa;
+      --red:#ff8e8e;
+      --shadow:0 18px 60px rgba(0,0,0,.30);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,Arial,Helvetica,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(125,207,255,.12), transparent 26%),
+        radial-gradient(circle at top right, rgba(242,196,109,.11), transparent 24%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1220px;margin:0 auto;padding:28px 18px 72px}
+    .hero,.card,.panel,.note,.mini{border:1px solid var(--line);border-radius:28px;box-shadow:var(--shadow);background:var(--card)}
+    .hero{padding:28px;position:relative;overflow:hidden}
+    .hero:before,.hero:after{content:"";position:absolute;border-radius:999px}
+    .hero:before{width:240px;height:240px;background:rgba(125,207,255,.12);right:-60px;top:-60px}
+    .hero:after{width:180px;height:180px;background:rgba(242,196,109,.11);left:-30px;bottom:-50px}
+    .kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:800;position:relative}
+    h1{font-size:48px;line-height:1.03;margin:12px 0 14px;max-width:920px;position:relative}
+    .lead{font-size:18px;line-height:1.66;color:#dde6f4;max-width:920px;position:relative;margin:0}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px;position:relative}
+    .stat{padding:16px;border:1px solid var(--line);border-radius:20px;background:#0f1620}
+    .stat .label{display:block;color:var(--muted);font-size:13px;margin-bottom:8px}
+    .stat b{font-size:23px}
+    .section{margin-top:28px}
+    .section h2{font-size:31px;margin:0 0 14px}
+    .intro{margin:0 0 16px;color:#d2dcea;line-height:1.62;max-width:860px}
+    .grid{display:grid;grid-template-columns:1.08fr .92fr;gap:18px}
+    .panel{padding:22px}
+    .route{display:grid;gap:10px;margin-top:14px}
+    .step{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:16px;background:#0f1620}
+    .dot{width:12px;height:12px;border-radius:999px;flex:0 0 auto;margin-top:6px}
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .card{overflow:hidden}
+    .inner{padding:20px}
+    .eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:800}
+    .card h3{font-size:28px;margin:8px 0 8px}
+    .card p{margin:0;color:#dbe5f2;line-height:1.58}
+    .meta{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+    .meta div{padding:12px;border:1px solid var(--line);border-radius:16px;background:#0f1620}
+    .meta span{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    .chip{padding:8px 11px;border-radius:999px;border:1px solid var(--line);background:#0e151f;font-size:13px;color:#eaf1fb}
+    .chip.good{border-color:rgba(143,210,170,.35);background:rgba(143,210,170,.10);color:#c9f4dc}
+    .chip.warn{border-color:rgba(242,196,109,.35);background:rgba(242,196,109,.10);color:#ffe3aa}
+    .chip.risk{border-color:rgba(255,142,142,.35);background:rgba(255,142,142,.10);color:#ffd2d2}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 14px;border-radius:14px;font-weight:700;border:1px solid var(--line);background:#0f1620}
+    .btn.primary{background:linear-gradient(180deg,#86d2ff,#65bff9);color:#08111b;border:none}
+    .btn.soft{background:rgba(242,196,109,.10);color:#ffe3af;border-color:rgba(242,196,109,.25)}
+    .note{padding:18px 20px;line-height:1.64;color:#ffe4b6;background:rgba(242,196,109,.09);border-color:rgba(242,196,109,.24)}
+    .mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .mini{padding:18px}
+    .mini h3{margin:0 0 10px;font-size:20px}
+    .mini p{margin:0;color:#d8e1ef;line-height:1.58}
+    .footer{margin-top:28px;padding:20px 22px;border:1px solid var(--line);border-radius:22px;background:#0e151f;color:var(--muted);line-height:1.68}
+    @media (max-width:980px){
+      .stats,.cards,.mini-grid,.grid,.meta{grid-template-columns:1fr 1fr}
+      h1{font-size:38px}
+    }
+    @media (max-width:760px){
+      .stats,.cards,.mini-grid,.grid,.meta{grid-template-columns:1fr}
+      .wrap{padding:18px 14px 56px}
+      .hero,.panel,.note,.mini,.inner{padding-left:16px;padding-right:16px}
+      h1{font-size:34px}
+      .lead{font-size:16px}
+      .section h2{font-size:28px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="kicker">vilnius tonight · football + beer</div>
+      <h1>От вашей точки у Hotel Vilnia — вот куда реально имеет смысл идти сегодня вечером смотреть футбол и пить хорошее пиво.</h1>
+      <p class="lead">Я собрал не просто бары рядом, а <b>вечерний shortlist</b> под ваш запрос: <b>футбол + пиво + нормальная логистика пешком</b>. У каждого места оставил <b>ссылку на Google Maps</b> и коротко объяснил, <b>почему именно туда стоит идти</b>. Важная честная оговорка: наличие <b>сегодняшней трансляции</b> лучше финально добить звонком/Instagram, но по типу места и формату вечера это самые осмысленные варианты из вашей точки.</p>
+      <div class="stats">
+        <div class="stat"><span class="label">Старт</span><b>Hotel Vilnia</b></div>
+        <div class="stat"><span class="label">Лучший пивной рядом</span><b>13 statinių</b></div>
+        <div class="stat"><span class="label">Самый атмосферный на вечер</span><b>Bix / Šnekutis</b></div>
+        <div class="stat"><span class="label">Формат</span><b>всё пешком</b></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid">
+        <div class="panel">
+          <div class="kicker">моя логика</div>
+          <h2 style="margin:10px 0 8px">Если нужен вечер без фейлов — не идите в случайный бар, идите по одному из трёх сценариев</h2>
+          <div class="route">
+            <div class="step"><span class="dot" style="background:var(--green)"></span><div><b>Самый безопасный вариант рядом:</b><br><span style="color:var(--muted)"><b>13 statinių</b> — очень близко, явный пивной профиль, проще всего сорваться прямо сейчас.</span></div></div>
+            <div class="step"><span class="dot" style="background:var(--blue)"></span><div><b>Если хотите больше вечернего вайба:</b><br><span style="color:var(--muted)"><b>Bix</b> или <b>Šnekutis</b> — уже не «забежать на 20 минут», а сделать из этого полноценный барный вечер.</span></div></div>
+            <div class="step"><span class="dot" style="background:var(--gold)"></span><div><b>Если важен именно матч:</b><br><span style="color:var(--muted)">берите места формата pub/bar, а не винные/коктейльные. Поэтому в списке я сдвинул акцент в сторону пабов и пивных мест.</span></div></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="kicker">важная честность</div>
+          <h2 style="margin:10px 0 8px">Что я проверил, а что нет</h2>
+          <p class="intro">Я точно привязал всё к вашей текущей точке у <b>Hotel Vilnia</b>, нашёл бары/пабы поблизости, расстояния пешком и пивной/пабный профиль там, где он есть в данных карты. Но <b>сам факт сегодняшней трансляции конкретного матча</b> в open map-данных не хранится, поэтому это надо добить одним быстрым касанием: звонком, Instagram или сообщением.</p>
+          <div class="chips">
+            <span class="chip good">локация проверена</span>
+            <span class="chip good">Google Maps links есть</span>
+            <span class="chip good">пешая логистика есть</span>
+            <span class="chip warn">сегодняшний матч лучше подтвердить</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Куда идти сегодня вечером</h2>
+      <p class="intro">Ниже — именно shortlist под ваш запрос, а не просто «все бары вокруг».</p>
+      <div class="cards">
+        <article class="card">
+          <div class="inner">
+            <div class="eyebrow">мой главный совет прямо сейчас</div>
+            <h3>13 statinių</h3>
+            <p><b>Почему сюда:</b> это самый логичный стартовый выбор из вашей точки. Очень близко, место явно завязано на <b>пиво</b> — в данных есть ale / stout / porter / IPA / lager. То есть это не просто «бар», а реально место, куда идут именно за пивом. Если вам нужен вечер по схеме <b>быстро дошли → сели → взяли пиво → включили футбол</b>, это лучший первый выстрел.</p>
+            <div class="meta">
+              <div><span>Пешком</span><b>~400 м · около 5 мин</b></div>
+              <div><span>Адрес</span><b>Pilies g. 6</b></div>
+              <div><span>Почему годится</span><b>явный пивной профиль</b></div>
+              <div><span>Контакт</span><b>+370 600 27 733</b></div>
+            </div>
+            <div class="chips">
+              <span class="chip good">лучший beer-first вариант</span>
+              <span class="chip good">очень близко</span>
+              <span class="chip warn">матч лучше быстро подтвердить звонком</span>
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="https://www.google.com/maps/search/?api=1&query=54.6840708,25.2903339" target="_blank" rel="noopener noreferrer">Открыть в Google Maps</a>
+              <a class="btn" href="https://www.google.com/maps/dir/?api=1&origin=54.6849108,25.2928802&destination=54.6840708,25.2903339" target="_blank" rel="noopener noreferrer">Маршрут пешком</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="inner">
+            <div class="eyebrow">если хочется уже полноценного pub-вечера</div>
+            <h3>Bix</h3>
+            <p><b>Почему сюда:</b> это уже не «забежали на кружку», а место под более длинный вечер. Формат именно <b>pub</b>, а это лучше попадает в запрос «футбол + пиво», чем обычный коктейльный бар. Сюда есть смысл идти, если хочется атмосферы, шума, движения и не самой стерильной барной посадки.</p>
+            <div class="meta">
+              <div><span>Пешком</span><b>~2.7 км · 25–30 мин</b></div>
+              <div><span>Адрес</span><b>Etmonų g. 6</b></div>
+              <div><span>Почему годится</span><b>формат именно pub</b></div>
+              <div><span>Сценарий</span><b>сделать из этого целый вечер</b></div>
+            </div>
+            <div class="chips">
+              <span class="chip good">больше pub mood</span>
+              <span class="chip warn">идти уже осознанно, не «на 10 минут»</span>
+              <span class="chip warn">трансляцию лучше уточнить заранее</span>
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="https://www.google.com/maps/search/?api=1&query=54.6766319,25.2868285" target="_blank" rel="noopener noreferrer">Открыть в Google Maps</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="inner">
+            <div class="eyebrow">если нужен более местный и пивной вайб</div>
+            <h3>Šnekutis</h3>
+            <p><b>Почему сюда:</b> это тоже именно <b>pub</b>, а не универсальный бар под всё подряд. Хороший вариант, если хочется ощущение более живого, «местного» вечера с пивным уклоном. Я бы держал его как сильную альтернативу Bix, особенно если хочется меньше «модного бара» и больше классического пабного ощущения.</p>
+            <div class="meta">
+              <div><span>Пешком</span><b>~3.1 км · 30+ мин</b></div>
+              <div><span>Адрес</span><b>Šv. Mikalojaus g. 15</b></div>
+              <div><span>Почему годится</span><b>pub-формат + beer vibe</b></div>
+              <div><span>Сценарий</span><b>идти, если хотите «нормальный паб»</b></div>
+            </div>
+            <div class="chips">
+              <span class="chip good">сильный запасной pub-вариант</span>
+              <span class="chip risk">дальше пешком</span>
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="https://www.google.com/maps/search/?api=1&query=54.6779397,25.2825066" target="_blank" rel="noopener noreferrer">Открыть в Google Maps</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="inner">
+            <div class="eyebrow">если нужен компромисс ближе и попроще</div>
+            <h3>Who Hit John</h3>
+            <p><b>Почему сюда:</b> он ближе, чем Bix и Šnekutis, и при этом остаётся баром с вечерним настроением, а не просто точкой «зайти на кофе». Это хороший компромисс, если <b>13 statinių</b> окажется слишком маленьким / слишком пустым / без матча, а далеко идти не хочется.</p>
+            <div class="meta">
+              <div><span>Пешком</span><b>~1.4 км · 15–20 мин</b></div>
+              <div><span>Адрес</span><b>Didžioji g. 19</b></div>
+              <div><span>Почему годится</span><b>вечерний бар в пределах адекватной прогулки</b></div>
+              <div><span>Сценарий</span><b>план B на сегодня</b></div>
+            </div>
+            <div class="chips">
+              <span class="chip good">хороший компромисс</span>
+              <span class="chip warn">футбол не гарантирован, надо уточнить</span>
+            </div>
+            <div class="actions">
+              <a class="btn primary" href="https://www.google.com/maps/search/?api=1&query=54.6792813,25.2869563" target="_blank" rel="noopener noreferrer">Открыть в Google Maps</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Быстрый порядок, как я бы это делал на вашем месте</h2>
+      <div class="mini-grid">
+        <div class="mini">
+          <h3>Вариант 1 — без ебли</h3>
+          <p>Сразу идите в <b>13 statinių</b>. Это самый короткий путь, самый очевидный пивной профиль и наименьший риск потратить вечер на беготню.</p>
+        </div>
+        <div class="mini">
+          <h3>Вариант 2 — если хочется pub-атмосферу</h3>
+          <p>Сначала быстро проверяете, где точно крутят матч, и если всё ок — выбираете <b>Bix</b> или <b>Šnekutis</b> как более полноценный барный вечер.</p>
+        </div>
+        <div class="mini">
+          <h3>Вариант 3 — план B</h3>
+          <p>Если первый выбор не заходит, не тратьте час на рефлексию — переключайтесь на <b>Who Hit John</b> как на самый удобный запасной вечерний вариант.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="note"><b>Мой честный вывод:</b> если бы я выбирал вам одно место без лишней романтики, я бы сначала отправил вас в <b>13 statinių</b>. Потому что оно ближе всего, у него самый явный beer-first профиль и оно лучше всего совпадает с запросом «сегодня вечером футбол и вкусное пиво». Если хочется больше именно pub-night вайба — тогда уже <b>Bix</b> или <b>Šnekutis</b>, но это второй шаг.</div>
+    </section>
+
+    <div class="footer">
+      Основа для этой страницы: ваша текущая точка у <b>Hotel Vilnia</b>, nearby-поиск по барам/пабам, пешие расстояния и тип заведения. <b>Ссылки на Google Maps</b> встроены сразу в карточки. Ограничение честно одно: open map-данные не говорят, крутят ли именно <b>сегодняшний футбол</b>, поэтому финальный шаг перед выходом — один быстрый звонок или просмотр Instagram/FB заведения.
+    </div>
+  </div>
+</body>
+</html>
