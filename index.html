@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oslo → Molde — roadtrip board</title>
+  <style>
+    :root{
+      --bg:#0f1115;
+      --bg2:#151a23;
+      --card:#171b24;
+      --line:#2a3140;
+      --text:#f6f8fc;
+      --muted:#9ca6b8;
+      --pink:#ff5c91;
+      --blue:#7fd0ff;
+      --green:#8ad1b2;
+      --gold:#d7b06a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,Arial,Helvetica,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(127,208,255,.14), transparent 26%),
+        radial-gradient(circle at top left, rgba(255,92,145,.12), transparent 24%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+    }
+    a{color:var(--blue)}
+    .wrap{max-width:1220px;margin:0 auto;padding:28px 18px 60px}
+    .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+    .panel,.card,.stop{
+      background:rgba(23,27,36,.92);
+      border:1px solid var(--line);
+      border-radius:24px;
+      box-shadow:0 12px 36px rgba(0,0,0,.24);
+    }
+    .panel{padding:24px}
+    .kicker{
+      color:var(--blue);
+      text-transform:uppercase;
+      letter-spacing:.15em;
+      font-size:12px;
+      font-weight:800;
+    }
+    h1{font-size:44px;line-height:1.04;margin:10px 0 14px}
+    .lead{font-size:18px;line-height:1.58;color:#dde4ef;margin:0}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .stat{background:#11151d;border:1px solid var(--line);border-radius:18px;padding:14px}
+    .stat .label{display:block;color:var(--muted);font-size:13px;margin-bottom:7px}
+    .stat b{font-size:23px}
+    .route{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+    .route li{display:flex;gap:12px;align-items:center;background:#11151d;border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+    .dot{width:12px;height:12px;border-radius:999px;flex:0 0 auto}
+    .section{margin-top:28px}
+    .section h2{font-size:30px;margin:0 0 14px}
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .card{overflow:hidden}
+    .card img{width:100%;height:255px;object-fit:cover;display:block;background:#0f131a}
+    .body{padding:18px 18px 20px}
+    .eyebrow{color:var(--blue);text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:800}
+    .body h3{font-size:27px;margin:8px 0 10px}
+    .body p{margin:0;color:#dde4ef;line-height:1.58}
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    .tag{font-size:13px;color:#e8edf7;border:1px solid var(--line);background:#11151d;border-radius:999px;padding:7px 10px}
+    .timeline{display:grid;gap:14px}
+    .stop{display:grid;grid-template-columns:140px 1fr;gap:16px;padding:16px 18px}
+    .time{font-size:30px;font-weight:800}
+    .muted{color:var(--muted)}
+    .note{margin-top:16px;border-radius:18px;padding:16px 18px;background:rgba(255,92,145,.08);border:1px solid rgba(255,92,145,.25);color:#ffd5e4}
+    .small{font-size:14px;line-height:1.6;color:var(--muted)}
+    .footer{margin-top:18px}
+    @media (max-width:900px){
+      .hero,.cards{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr 1fr}
+      .stop{grid-template-columns:1fr}
+      h1{font-size:36px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="panel">
+        <div class="kicker">roadtrip board</div>
+        <h1>Oslo → Molde перед Jaga Jazzist</h1>
+        <p class="lead">Собрал мини‑сайт, чтобы вам завтра быстро посмотреть, <b>как лучше построить дорогу</b>: где сделать нормальный стоп на еду, где красивую паузу, а где просто не тратить лишнее время. Ниже карточки мест с подписями и готовый сценарий дня.</p>
+        <div class="stats">
+          <div class="stat"><span class="label">Дорога</span><b>~529 км</b></div>
+          <div class="stat"><span class="label">Чистое время</span><b>~8 часов</b></div>
+          <div class="stat"><span class="label">Концерт</span><b>PLASSEN, Molde</b></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="kicker">короткая логика</div>
+        <h2 style="margin:10px 0 8px;font-size:30px">Лучший баланс — 2 нормальных стопа</h2>
+        <p class="lead" style="font-size:16px">Я бы делал так: <b>Lillehammer</b> как первая человеческая пауза, <b>Åndalsnes</b> как самый красивый стоп, а <b>Dombås</b> оставить чисто под бензин / кофе / туалет.</p>
+        <ul class="route">
+          <li><span class="dot" style="background:var(--pink)"></span><span><b>Oslo</b> — старт пораньше утром</span></li>
+          <li><span class="dot" style="background:var(--blue)"></span><span><b>Lillehammer</b> — еда, пройтись, размяться</span></li>
+          <li><span class="dot" style="background:var(--gold)"></span><span><b>Dombås</b> — короткий техстоп, не залипать</span></li>
+          <li><span class="dot" style="background:var(--green)"></span><span><b>Åndalsnes / Romsdal</b> — главный красивый стоп дня</span></li>
+          <li><span class="dot" style="background:var(--pink)"></span><span><b>Molde / PLASSEN</b> — приехать без гонки к концерту</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Места по пути — с подписями</h2>
+      <div class="cards">
+        <article class="card">
+          <img src="https://eu-assets.simpleview-europe.com/lillehammer/imageresizer/?image=%2Fdbimgs%2FH%C3%B8stMaihaugen.jpg&action=Open_Graph_img" alt="Lillehammer" />
+          <div class="body">
+            <div class="eyebrow">Стоп 1</div>
+            <h3>Lillehammer</h3>
+            <p><b>Зачем сюда:</b> это лучший первый длинный стоп после Oslo. Не ради галочки, а чтобы <b>нормально поесть</b>, пройтись и не чувствовать день как одну бесконечную трассу.</p>
+            <div class="tags">
+              <span class="tag">завтрак / обед</span>
+              <span class="tag">короткая прогулка</span>
+              <span class="tag">комфортный старт дня</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img alt="Dombås" src="data:image/svg+xml;utf8,
+            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'>
+              <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%236c5a44'/><stop offset='100%25' stop-color='%23a28c74'/></linearGradient></defs>
+              <rect width='1600' height='900' fill='url(%23g)'/>
+              <circle cx='250' cy='180' r='150' fill='rgba(255,255,255,.14)'/><circle cx='1300' cy='700' r='220' fill='rgba(255,255,255,.12)'/>
+              <text x='90' y='190' font-family='Arial' font-size='82' font-weight='700' fill='white'>Domb%C3%A5s</text>
+              <text x='90' y='280' font-family='Arial' font-size='34' fill='rgba(255,255,255,.92)'>техническая остановка</text>
+              <rect x='90' y='350' width='820' height='240' rx='24' fill='rgba(0,0,0,.16)' stroke='rgba(255,255,255,.28)'/>
+              <text x='130' y='420' font-family='Arial' font-size='29' fill='white'>Заправка, туалет, кофе, быстро размяться</text>
+              <text x='130' y='470' font-family='Arial' font-size='29' fill='white'>Не стоит делать главным романтичным стопом</text>
+              <text x='130' y='520' font-family='Arial' font-size='29' fill='white'>Оптимально: 15–20 минут и дальше в путь</text>
+            </svg>" />
+          <div class="body">
+            <div class="eyebrow">Техстоп</div>
+            <h3>Dombås</h3>
+            <p><b>Что это:</b> не место, куда стоит вкладывать много времени, а удобная точка для бензина, кофе, туалета и короткой передышки.</p>
+            <div class="tags">
+              <span class="tag">15–20 минут</span>
+              <span class="tag">кофе</span>
+              <span class="tag">заправка</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img alt="Åndalsnes" src="data:image/svg+xml;utf8,
+            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'>
+              <defs><linearGradient id='g2' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%23244d6d'/><stop offset='100%25' stop-color='%237ba4c1'/></linearGradient></defs>
+              <rect width='1600' height='900' fill='url(%23g2)'/>
+              <circle cx='230' cy='160' r='140' fill='rgba(255,255,255,.14)'/><circle cx='1220' cy='680' r='250' fill='rgba(255,255,255,.12)'/>
+              <text x='90' y='190' font-family='Arial' font-size='82' font-weight='700' fill='white'>%C3%85ndalsnes</text>
+              <text x='90' y='280' font-family='Arial' font-size='34' fill='rgba(255,255,255,.92)'>главный красивый стоп дня</text>
+              <rect x='90' y='350' width='980' height='250' rx='24' fill='rgba(0,0,0,.16)' stroke='rgba(255,255,255,.28)'/>
+              <text x='130' y='420' font-family='Arial' font-size='29' fill='white'>Горы, воздух, фотки и ощущение “вот теперь мы в Норвегии”</text>
+              <text x='130' y='470' font-family='Arial' font-size='29' fill='white'>Лучше сохранить именно этот стоп, а не Domb%C3%A5s</text>
+              <text x='130' y='520' font-family='Arial' font-size='29' fill='white'>Оптимально: 30–45 минут</text>
+            </svg>" />
+          <div class="body">
+            <div class="eyebrow">Самый красивый стоп</div>
+            <h3>Åndalsnes / Romsdal</h3>
+            <p><b>Зачем сюда:</b> это самая сильная визуальная пауза перед Molde. Если выбирать <b>один красивый стоп</b> по дороге, я бы ставил именно на него.</p>
+            <div class="tags">
+              <span class="tag">виды</span>
+              <span class="tag">фото</span>
+              <span class="tag">30–45 минут</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img alt="PLASSEN / Teatret Vårt" src="data:image/svg+xml;utf8,
+            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'>
+              <defs><linearGradient id='g3' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%2386244b'/><stop offset='100%25' stop-color='%23ca6d90'/></linearGradient></defs>
+              <rect width='1600' height='900' fill='url(%23g3)'/>
+              <circle cx='250' cy='180' r='150' fill='rgba(255,255,255,.14)'/><circle cx='1310' cy='700' r='220' fill='rgba(255,255,255,.12)'/>
+              <text x='90' y='190' font-family='Arial' font-size='74' font-weight='700' fill='white'>PLASSEN / Teatret V%C3%A5rt</text>
+              <text x='90' y='280' font-family='Arial' font-size='34' fill='rgba(255,255,255,.92)'>площадка концерта в Molde</text>
+              <rect x='90' y='350' width='1080' height='260' rx='24' fill='rgba(0,0,0,.16)' stroke='rgba(255,255,255,.28)'/>
+              <text x='130' y='420' font-family='Arial' font-size='29' fill='white'>Адрес: G%C3%B8rvellplassen 1, 6413 Molde</text>
+              <text x='130' y='470' font-family='Arial' font-size='29' fill='white'>Именно здесь у вас Jaga Jazzist на Moldejazz</text>
+              <text x='130' y='520' font-family='Arial' font-size='29' fill='white'>Лучше приехать заранее и без гонки</text>
+            </svg>" />
+          <div class="body">
+            <div class="eyebrow">Точка назначения</div>
+            <h3>PLASSEN / Teatret Vårt</h3>
+            <p><b>Куда именно ехать:</b> по официальной информации Moldejazz площадка и фестивальный адрес — <b>Gørvellplassen 1, 6413 Molde</b>. Это ваш финальный чекпоинт.</p>
+            <div class="tags">
+              <span class="tag">адрес подтверждён</span>
+              <span class="tag">центр Molde</span>
+              <span class="tag">Jaga Jazzist</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Готовый сценарий дня</h2>
+      <div class="timeline">
+        <div class="stop"><div class="time">08:00</div><div><b>Выезд из Oslo</b><div class="muted">Чем раньше выедете, тем меньше будет нервов под концерт и меньше шанс приехать “впритык”.</div></div></div>
+        <div class="stop"><div class="time">10:15–11:30</div><div><b>Lillehammer</b><div class="muted">Нормальный завтрак / ранний обед, короткая прогулка, размяться после первых часов дороги.</div></div></div>
+        <div class="stop"><div class="time">13:30</div><div><b>Dombås</b><div class="muted">Короткий техстоп — кофе, туалет, бензин. Не зависать.</div></div></div>
+        <div class="stop"><div class="time">16:00–16:45</div><div><b>Åndalsnes / Romsdal</b><div class="muted">Главная красивая пауза дня: воздух, виды, фотки, прийти в себя перед последним куском дороги.</div></div></div>
+        <div class="stop"><div class="time">18:15–18:45</div><div><b>Приезд в Molde</b><div class="muted">Заселение / короткая прогулка / еда до концерта. В идеале без спешки.</div></div></div>
+      </div>
+      <div class="note">Если по энергии нужно что-то резать, первым режьте не Åndalsnes, а Dombås. Красивый стоп лучше сохранить, чем ещё одну утилитарную точку.</div>
+    </section>
+
+    <section class="section">
+      <div class="panel">
+        <div class="kicker">мой вывод</div>
+        <h2 style="margin:10px 0 10px">Лучший сетап: Lillehammer + Åndalsnes</h2>
+        <p class="lead" style="font-size:17px">Если коротко: <b>Lillehammer</b> даёт вам человеческий ритм и нормальную первую паузу, <b>Åndalsnes</b> даёт красоту и настроение, <b>Dombås</b> нужен только как техничка. Для концерта целиться в <b>PLASSEN / Teatret Vårt</b>, адрес: <b>Gørvellplassen 1, 6413 Molde</b>.</p>
+        <div class="footer small">
+          Источники, которые я реально проверил: маршрут Oslo → Molde (~529 км / ~8 ч), страница Moldejazz с venue <b>Teatret Vårt (PLASSEN)</b> и адресом <b>Gørvellplassen 1, 6413 Molde</b>, плюс доступная туристическая картинка Lillehammer. Для Åndalsnes / Dombås / PLASSEN сделал подписанные карточки, чтобы вам было понятнее, что это за точки и зачем они нужны.
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
